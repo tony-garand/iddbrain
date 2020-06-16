@@ -1,0 +1,10 @@
+pipelines:   
+  branches:
+    develop:
+     - step:
+         script: 
+           - ssh root@brain.iddigital.me "cd /var/www/brain.dev; /usr/bin/git pull; /usr/local/bin/composer update; /usr/bin/php artisan migrate; /usr/bin/npm run dev; /usr/bin/php artisan cache:clear; /usr/bin/php artisan view:clear; /usr/bin/php artisan route:clear; /usr/bin/php artisan clear-compiled; /usr/bin/php artisan config:cache; /usr/bin/php artisan config:clear; /usr/bin/supervisorctl restart all; echo '$BITBUCKET_BUILD_NUMBER' > /var/www/brain.dev/version.txt"
+    master:
+     - step:
+         script:
+           - ssh root@brain.iddigital.me "cd /var/www/brain; /usr/bin/git pull; /usr/bin/php artisan migrate; /usr/bin/npm run dev;  /usr/bin/php artisan cache:clear; /usr/bin/php artisan view:clear; /usr/bin/php artisan route:clear; /usr/bin/php artisan clear-compiled; /usr/bin/php artisan config:cache; /usr/bin/php artisan config:clear; /usr/bin/supervisorctl restart all; echo '$BITBUCKET_BUILD_NUMBER' > /var/www/brain/version.txt"
