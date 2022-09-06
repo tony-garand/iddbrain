@@ -23,7 +23,7 @@
         "vue": "^2.5.16"
     },
     "dependencies": {
-        "datatables.net": "^1.10.16",
+        "datatables.net": "^1.11.3",
         "lightbox2": "^2.10.0",
         "moment": "^2.20.1",
         "puppeteer": "^1.1.1",
